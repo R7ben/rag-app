@@ -10,3 +10,20 @@ chromadb.Client() — spins up a local vector database. No server, no setup, run
 collection — think of it like a table that holds your vectors. You group related documents in one.
 collection.add() — this is where the magic happens: Chroma takes each text chunk, runs it through an embedding model (converting meaning → numbers), and stores both. You don't call the embedder yourself — Chroma does it for you with its built-in default.
 ids — every stored item needs a unique label. chunk_0, chunk_1, etc. — just so the database can tell them apart.
+
+Why these two:
+
+streamlit — your UI, same as the rewriter app.
+pypdf — reads text out of a PDF file. A PDF is not plain text; pypdf extracts the words so we can chunk them. This is the one new skill in this build: getting text out of a real uploaded file.
+
+Three things worth understanding, not just pasting:
+
+st.file_uploader hands you the actual uploaded file — pypdf then reads text out of it, page by page. That loop is how you turn a PDF into usable text.
+The delete_collection bit — without it, uploading a second PDF would pile new chunks on top of the old ones. This resets the database per upload. Small detail, real bug avoided.
+n_results=3 — I bumped it from 1 to 3. Real questions often need a few chunks of context, not one. More context, better answers.
+
+Why each part:
+
+split("\n\n") — breaks on paragraph gaps, not every line. Bigger, meaningful chunks.
+.replace("\n", " ") — flattens leftover line breaks inside a paragraph into spaces, so a sentence isn't chopped mid-way.
+len(...) > 50 — drops tiny fragments (page numbers, stray headers). Only keep chunks with real substance.
