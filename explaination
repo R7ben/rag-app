@@ -1,0 +1,12 @@
+An LLM knows nothing about your documents. RAG fixes that in three moves:
+
+Chunk — split your document into small pieces.
+Embed & store — turn each piece into a vector (numbers capturing its meaning) and save it in a vector database. Similar meaning → similar numbers.
+Retrieve & answer — when a user asks something, find the chunks closest in meaning to their question, hand those to the LLM, and let it answer from them.
+
+Why each piece:
+
+chromadb.Client() — spins up a local vector database. No server, no setup, runs in memory for now.
+collection — think of it like a table that holds your vectors. You group related documents in one.
+collection.add() — this is where the magic happens: Chroma takes each text chunk, runs it through an embedding model (converting meaning → numbers), and stores both. You don't call the embedder yourself — Chroma does it for you with its built-in default.
+ids — every stored item needs a unique label. chunk_0, chunk_1, etc. — just so the database can tell them apart.
