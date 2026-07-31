@@ -24,8 +24,6 @@ if uploaded_file:
     chunks = [text[i:i+chunk_size] for i in range(0, len(text), chunk_size - overlap)]
     chunks = [c.strip() for c in chunks if len(c.strip()) > 30]
 
-    st.write(chunks[:10])   # show the first 10 chunks so we can SEE what was extracted
-
     # STAGE 2 — embed & store (fresh collection each upload)
     db = chromadb.Client()
     try:

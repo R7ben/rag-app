@@ -27,3 +27,9 @@ Why each part:
 split("\n\n") — breaks on paragraph gaps, not every line. Bigger, meaningful chunks.
 .replace("\n", " ") — flattens leftover line breaks inside a paragraph into spaces, so a sentence isn't chopped mid-way.
 len(...) > 50 — drops tiny fragments (page numbers, stray headers). Only keep chunks with real substance.
+
+That answer is correct, detailed, and grounded entirely in the paper. That's your RAG app fully working — clean extraction, good retrieval, accurate generation. Compare it to the "I don't know" from two messages ago: same code, better chunking. You just tuned a RAG system and watched the quality jump. That's a real, paid-level skill.
+
+But notice the new number: "Loaded 1 chunks." That went from 1153 → 1. That's a red flag you should catch yourself, and here's the lesson: this PDF uses single line breaks, not double (\n\n), so splitting on paragraph gaps found almost none — it dumped the whole document into one giant chunk. It worked here only because the paper is short enough to fit in one chunk the model could read. On a longer document, one massive chunk would blow past limits or bury the answer.
+
+The real lesson — this is the crux of RAG: there is no universal chunk size. Line-splitting gave 1153 tiny fragments; paragraph-splitting gave 1 giant blob. The right answer is in between, and different documents need different strategies. Production RAG uses a chunk-by-size approach — fixed character counts with slight overlap — precisely because you can't rely on a document's formatting. That's the professional-grade fix.
