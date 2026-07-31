@@ -1,12 +1,12 @@
 # rag-app
 
-A minimal Retrieval-Augmented Generation (RAG) example. It chunks a sample document, stores the chunks in a local vector database, retrieves the most relevant chunk for a question, and asks an LLM to answer using only that context.
+A minimal Retrieval-Augmented Generation (RAG) example. Upload a PDF, and it chunks the text, stores the chunks in a local vector database, retrieves the chunks most relevant to your question, and asks an LLM to answer using only that context.
 
 ## How it works
 
-1. **Chunk** — the sample document is split into lines, each treated as a chunk.
-2. **Embed & store** — [ChromaDB](https://www.trychroma.com/) embeds each chunk with its built-in default model and stores it in an in-memory collection.
-3. **Retrieve & answer** — the question is embedded, the closest chunk is retrieved, and it's passed as context to a Groq-hosted LLM (`llama-3.3-70b-versatile`), which answers using only that context.
+1. **Extract & chunk** — [pypdf](https://pypi.org/project/pypdf/) pulls the text out of the uploaded PDF, which is then split into ~500-character chunks with a 50-character overlap (overlap keeps context from getting lost across chunk boundaries).
+2. **Embed & store** — [ChromaDB](https://www.trychroma.com/) embeds each chunk with its built-in default model and stores it in an in-memory collection, reset on every new upload.
+3. **Retrieve & answer** — the question is embedded, the 5 closest chunks are retrieved, and they're passed as context to a Groq-hosted LLM (`llama-3.3-70b-versatile`), which answers using only that context.
 
 See [explaination](explaination) for a more detailed walkthrough of each step.
 
@@ -22,7 +22,7 @@ See [explaination](explaination) for a more detailed walkthrough of each step.
 2. Install dependencies:
 
    ```
-   pip install chromadb python-dotenv groq
+   pip install streamlit pypdf chromadb python-dotenv groq
    ```
 
 3. Create a `.env` file in the project root with your [Groq API key](https://console.groq.com/keys):
@@ -34,13 +34,13 @@ See [explaination](explaination) for a more detailed walkthrough of each step.
 ## Usage
 
 ```
-python app.py
+streamlit run app.py
 ```
 
-This prints the generated chunks, how many were stored, the sample question, the retrieved chunk, and the LLM's answer.
+Upload a PDF in the browser UI, then ask a question. The app shows how many chunks were loaded, and answers your question using only the retrieved context.
 
 ## Next steps
 
-- Replace the hardcoded `document` string with real file uploads.
-- Swap the line-based chunking for a smarter splitter (e.g. by paragraph or token count).
 - Persist the Chroma collection to disk instead of using an in-memory client.
+- Let the user tune chunk size/overlap and `n_results` from the UI.
+- Show which chunks were retrieved alongside the answer, for transparency.
