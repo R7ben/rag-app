@@ -1,5 +1,6 @@
 import os
 import streamlit as st
+import time
 from pypdf import PdfReader
 import chromadb
 from dotenv import load_dotenv
@@ -7,31 +8,35 @@ from groq import Groq
 
 load_dotenv()
 client = Groq(api_key=os.getenv("GROQ_API_KEY"))
-
-st.title("Chat with your PDF")
-
+st.title("Chat with your PDF", width="stretch", text_alignment="center")
+container = st.container(border=True, width="stretch", autoscroll=True)
+container.write("Upload a PDF and ask questions about its content. The app will extract text, chunk it, and use an LLM to answer your questions based on the document.")
 uploaded_file = st.file_uploader("Upload a PDF", type="pdf")
 
 if uploaded_file:
+    st.pdf(uploaded_file, height=700)
     # STAGE 1 — extract text from the PDF, then chunk it
     reader = PdfReader(uploaded_file)
     text = ""
-    for page in reader.pages:
-        text += page.extract_text()
-    # Split into ~500-character chunks with 50-char overlap
-    text = text.replace("\n", " ")
-    chunk_size, overlap = 500, 50
-    chunks = [text[i:i+chunk_size] for i in range(0, len(text), chunk_size - overlap)]
-    chunks = [c.strip() for c in chunks if len(c.strip()) > 30]
+    with st.spinner("Extracting text from PDF..."):
+        time.sleep(1)  # simulate processing time
+        for page in reader.pages:
+            text += page.extract_text()
 
-    # STAGE 2 — embed & store (fresh collection each upload)
-    db = chromadb.Client()
-    try:
-        db.delete_collection("pdf_docs")   # clear old data on re-upload
-    except:
-        pass
-    collection = db.create_collection("pdf_docs")
-    collection.add(documents=chunks, ids=[f"c{i}" for i in range(len(chunks))])
+        # Split into ~500-character chunks with 50-char overlap
+        text = text.replace("\n", " ")
+        chunk_size, overlap = 500, 50
+        chunks = [text[i:i+chunk_size] for i in range(0, len(text), chunk_size - overlap)]
+        chunks = [c.strip() for c in chunks if len(c.strip()) > 30]
+
+        # STAGE 2 — embed & store (fresh collection each upload)
+        db = chromadb.Client()
+        try:
+            db.delete_collection("pdf_docs")   # clear old data on re-upload
+        except:
+            pass
+        collection = db.create_collection("pdf_docs")
+        collection.add(documents=chunks, ids=[f"c{i}" for i in range(len(chunks))])
 
     st.success(f"Loaded {len(chunks)} chunks. Ask a question below.")
 
@@ -48,4 +53,11 @@ if uploaded_file:
                 {"role": "user", "content": f"Context:\n{context}\n\nQuestion: {question}"}
             ]
         )
-        st.write(response.choices[0].message.content)
+        with st.container(border=True):
+            st.write(response.choices[0].message.content)
+
+sentiment_mapping = ["one", "two", "three", "four", "five"]
+selected = st.feedback("stars")
+if selected is not None:
+    st.markdown(f"You selected {sentiment_mapping[selected]} star(s).")
+st.badge("Made by ruben(Github:R7brn)", color="blue", width="stretch")
