@@ -247,9 +247,9 @@
 # enableXsrfProtection = true
 
 # Max size, in megabytes, for files uploaded with the file_uploader.
-#
-# Default: 100
-maxUploadSize = 10
+# 
+# Default: 200
+# maxUploadSize = 200
 
 # Max size, in megabytes, of messages that can be sent via the WebSocket
 # connection.
@@ -361,16 +361,16 @@ maxUploadSize = 10
 # base =
 
 # Primary accent color.
-primaryColor = "#c2c2c2"
+# primaryColor = 
 
 # Background color of the app.
-# backgroundColor =
+backgroundColor = "#d2d2d2"
 
 # Background color used for most interactive widgets.
-secondaryBackgroundColor = "#e3eaea"
+# secondaryBackgroundColor =
 
 # Color used for almost all text.
-textColor = "#060606"
+# textColor =
 
 # Red color used in the basic color palette.
 # 
@@ -574,7 +574,7 @@ textColor = "#060606"
 # linkUnderline =
 
 # Background color used for code blocks.
-codeBackgroundColor = "#b9d0d0"
+# codeBackgroundColor =
 
 # The font family for all text, except code blocks.
 # 
@@ -591,7 +591,7 @@ codeBackgroundColor = "#b9d0d0"
 # For example, you can use the following:
 # 
 # font = "cool-font, fallback-cool-font, sans-serif"
-font = "monospace"
+# font =
 
 # An array of fonts to use in your app.
 # 
@@ -625,7 +625,7 @@ font = "monospace"
 # positive integer.
 # 
 # If this isn't set, the font size will be 16px.
-baseFontSize = 17
+# baseFontSize =
 
 # The root font weight for the app.
 # 
@@ -633,7 +633,7 @@ baseFontSize = 17
 # integer multiple of 100. Values can be between 100 and 600, inclusive.
 # 
 # If this isn't set, the font weight will be set to 400 (normal weight).
-baseFontWeight = 200
+# baseFontWeight =
 
 # The font family to use for headings.
 # 
@@ -648,7 +648,7 @@ baseFontWeight = 200
 # fallbacks
 # 
 # If this isn't set, Streamlit uses `theme.font` for headings.
-headingFont = "monospace"
+# headingFont =
 
 # One or more font sizes for h1-h6 headings.
 # 
@@ -744,7 +744,7 @@ headingFont = "monospace"
 # 
 # For example, you can use "10px", "0.5rem", or "2rem". To follow best
 # practices, use rem instead of pixels when specifying a numeric size.
-baseRadius = "2.25rem"
+# baseRadius =
 
 # The radius used as basis for the corners of buttons.
 # 
@@ -760,10 +760,10 @@ baseRadius = "2.25rem"
 # practices, use rem instead of pixels when specifying a numeric size.
 # 
 # If this isn't set, Streamlit uses `theme.baseRadius` instead.
-buttonRadius = "0.9rem"
+# buttonRadius =
 
 # The color of the border around elements.
-borderColor = "#ededed"
+# borderColor =
 
 # The color of the border around dataframes and tables.
 # 
@@ -777,14 +777,14 @@ borderColor = "#ededed"
 # the bottom row of data editors with a dynamic number of rows. If this
 # isn't set, Streamlit uses a mix of `theme.backgroundColor` and
 # `theme.secondaryBackgroundColor`.
-dataframeHeaderBackgroundColor = "#d5d5ef"
+# dataframeHeaderBackgroundColor =
 
 # Whether to show a border around input widgets.
-showWidgetBorder = true
+# showWidgetBorder =
 
 # Whether to show a vertical separator between the sidebar and the main
 # content area.
-showSidebarBorder = true
+# showSidebarBorder =
 
 # An array of colors to use for categorical chart data.
 # 
@@ -864,13 +864,13 @@ showSidebarBorder = true
 [theme.sidebar]
 
 # Primary accent color.
-primaryColor = "#dfdfdf"
+primaryColor = "#ff6060"
 
 # Background color of the app.
-backgroundColor = "#838383"
+backgroundColor = "#606060"
 
 # Background color used for most interactive widgets.
-secondaryBackgroundColor = "#c9c9c9"
+# secondaryBackgroundColor =
 
 # Color used for almost all text.
 textColor = "#ffffff"
@@ -1224,7 +1224,7 @@ textColor = "#ffffff"
 # buttonRadius =
 
 # The color of the border around elements.
-borderColor = "#ffffff"
+# borderColor =
 
 # The color of the border around dataframes and tables.
 # 
