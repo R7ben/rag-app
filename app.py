@@ -1,4 +1,5 @@
 import os
+import st_yled
 import streamlit as st
 import time
 from pypdf import PdfReader
@@ -8,13 +9,14 @@ from groq import Groq
 
 load_dotenv()
 client = Groq(api_key=os.getenv("GROQ_API_KEY"))
+st_yled.init()
 
-st.sidebar.title("Tools")
+st.sidebar.title("Tools",)
 page = st.sidebar.radio("Choose a tool:", ["Chat with your PDF", "Meeting Notes Assistant"])
 
 
 def pdf_chat():
-    st.title("Chat with your PDF", width="stretch", text_alignment="center")
+    st_yled.title("Chat with your PDF", color="#84E0F79C")
     container = st.container(border=True, width="stretch", autoscroll=True)
     container.write("Upload a PDF and ask questions about its content. The app will extract text, chunk it, and use an LLM to answer your questions based on the document.")
     uploaded_file = st.file_uploader("Upload a PDF", type="pdf")
@@ -70,7 +72,7 @@ def pdf_chat():
 
 
 def meeting_notes_assistant():
-    st.title("Meeting Notes Assistant", width="stretch", text_alignment="center")
+    st_yled.title("Meeting Notes Assistant", color="#84E0F79C")
     container = st.container(border=True, width="stretch", autoscroll=True)
     container.write("Paste in raw, messy meeting notes and ask questions about its content")
     meeting_notes = st.text_area("Paste in raw, messy meeting notes here:", height=200, placeholder="Paste your meeting notes here...")
