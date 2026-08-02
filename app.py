@@ -16,7 +16,7 @@ page = st.sidebar.radio("Choose a tool:", ["Chat with your PDF", "Meeting Notes 
 
 
 def pdf_chat():
-    st_yled.title("Chat with your PDF", color="#84E0F79C")
+    st_yled.title("Chat with your PDF", color="#F57272FF")
     container = st.container(border=True, width="stretch", autoscroll=True)
     container.write("Upload a PDF and ask questions about its content. The app will extract text, chunk it, and use an LLM to answer your questions based on the document.")
     uploaded_file = st.file_uploader("Upload a PDF", type="pdf")
@@ -72,7 +72,7 @@ def pdf_chat():
 
 
 def meeting_notes_assistant():
-    st_yled.title("Meeting Notes Assistant", color="#84E0F79C")
+    st_yled.title("Meeting Notes Assistant", color="#F57272FF")
     container = st.container(border=True, width="stretch", autoscroll=True)
     container.write("Paste in raw, messy meeting notes and ask questions about its content")
     meeting_notes = st.text_area("Paste in raw, messy meeting notes here:", height=200, placeholder="Paste your meeting notes here...")

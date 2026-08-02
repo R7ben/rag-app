@@ -591,7 +591,7 @@ backgroundColor = "#d2d2d2"
 # For example, you can use the following:
 # 
 # font = "cool-font, fallback-cool-font, sans-serif"
-# font =
+font = "monospace"
 
 # An array of fonts to use in your app.
 # 
@@ -625,7 +625,7 @@ backgroundColor = "#d2d2d2"
 # positive integer.
 # 
 # If this isn't set, the font size will be 16px.
-# baseFontSize =
+baseFontSize = 17
 
 # The root font weight for the app.
 # 
@@ -648,7 +648,7 @@ backgroundColor = "#d2d2d2"
 # fallbacks
 # 
 # If this isn't set, Streamlit uses `theme.font` for headings.
-# headingFont =
+headingFont = "monospace"
 
 # One or more font sizes for h1-h6 headings.
 # 
@@ -760,10 +760,10 @@ backgroundColor = "#d2d2d2"
 # practices, use rem instead of pixels when specifying a numeric size.
 # 
 # If this isn't set, Streamlit uses `theme.baseRadius` instead.
-# buttonRadius =
+buttonRadius = "1.2rem"
 
 # The color of the border around elements.
-# borderColor =
+borderColor = "#000000"
 
 # The color of the border around dataframes and tables.
 # 
@@ -780,11 +780,11 @@ backgroundColor = "#d2d2d2"
 # dataframeHeaderBackgroundColor =
 
 # Whether to show a border around input widgets.
-# showWidgetBorder =
+showWidgetBorder = true
 
 # Whether to show a vertical separator between the sidebar and the main
 # content area.
-# showSidebarBorder =
+showSidebarBorder = true
 
 # An array of colors to use for categorical chart data.
 # 
@@ -1094,7 +1094,7 @@ textColor = "#ffffff"
 # For example, you can use the following:
 # 
 # font = "cool-font, fallback-cool-font, sans-serif"
-# font =
+font = "monospace"
 
 # The font family to use for headings.
 # 
@@ -1109,7 +1109,7 @@ textColor = "#ffffff"
 # fallbacks
 # 
 # If this isn't set, Streamlit uses `theme.font` for headings.
-# headingFont =
+headingFont = "monospace"
 
 # One or more font sizes for h1-h6 headings.
 # 
@@ -1205,7 +1205,7 @@ textColor = "#ffffff"
 # 
 # For example, you can use "10px", "0.5rem", or "2rem". To follow best
 # practices, use rem instead of pixels when specifying a numeric size.
-# baseRadius =
+baseRadius = "0.8rem"
 
 # The radius used as basis for the corners of buttons.
 # 
@@ -1221,10 +1221,10 @@ textColor = "#ffffff"
 # practices, use rem instead of pixels when specifying a numeric size.
 # 
 # If this isn't set, Streamlit uses `theme.baseRadius` instead.
-# buttonRadius =
+buttonRadius = "0.9rem"
 
 # The color of the border around elements.
-# borderColor =
+borderColor = "#000000"
 
 # The color of the border around dataframes and tables.
 # 
@@ -1241,7 +1241,7 @@ textColor = "#ffffff"
 # dataframeHeaderBackgroundColor =
 
 # Whether to show a border around input widgets.
-# showWidgetBorder =
+showWidgetBorder = true
 
 
 [secrets]
