@@ -4,3 +4,6 @@ venv/
 *.db
 __pycache__/
 chroma/
+.tokensave
+.claude
+
